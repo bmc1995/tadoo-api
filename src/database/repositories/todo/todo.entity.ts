@@ -7,11 +7,14 @@ export class Todo {
   id: number;
 
   @Column()
-  name: string;
+  title: string;
+
+  @Column({ default: false })
+  completed: boolean;
 
   @ManyToOne(() => User, (user) => user.todos)
   user: User;
 
-  @Column()
-  email: string;
+  @Column({ nullable: true })
+  parentTodo: number | null;
 }
