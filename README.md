@@ -4,13 +4,13 @@
 
  <center>
  
- # Nest Project Boilerplate - WIP
+ # Tadoo API - WIP
 
 </center>
 
 ## Description
 
-A modular [Nest](https://github.com/nestjs/nest) Boilerplate. Yay
+Todo list with AI
 
 ## Installation
 
