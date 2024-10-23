@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { DocumentEntity } from '../document/document.entity';
+import { Todo } from '../todo/todo.entity';
 
 @Entity()
 export class User {
@@ -27,7 +27,7 @@ export class User {
   @Column({ default: false })
   emailVerified: boolean;
 
-  @OneToMany(() => DocumentEntity, (document) => document.user)
+  @OneToMany(() => Todo, (todo) => todo.user)
   @Column({ array: true })
-  documents: number;
+  todos: number;
 }

@@ -1,26 +1,26 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { DocumentController } from '../modules/document/document.controller';
-import { DocumentService } from '../modules/document/document.service';
+import { TodoController } from '../modules/todos/todo.controller';
+import { TodoService } from '../modules/todos/todo.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { DocumentEntity } from '../database/repositories/document/document.entity';
+import { Todo } from '../database/repositories/todo/todo.entity';
 import { ModuleMocker, MockFunctionMetadata } from 'jest-mock';
 
 const moduleMocker = new ModuleMocker(global);
 
-describe('DocumentController', () => {
-  let controller: DocumentController;
+describe('TodoController', () => {
+  let controller: TodoController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [DocumentController],
-      providers: [DocumentService],
+      controllers: [TodoController],
+      providers: [TodoService],
     })
       .useMocker((token) => {
         const results = ['test1', 'test2'];
-        if (token === DocumentService) {
+        if (token === TodoService) {
           return { findAll: jest.fn().mockResolvedValue(results) };
         }
-        if (token === getRepositoryToken(DocumentEntity)) {
+        if (token === getRepositoryToken(Todo)) {
           return { findAll: jest.fn().mockResolvedValue(results) };
         }
         if (typeof token === 'function') {
@@ -33,7 +33,7 @@ describe('DocumentController', () => {
       })
       .compile();
 
-    controller = module.get<DocumentController>(DocumentController);
+    controller = module.get<TodoController>(TodoController);
   });
 
   it('should be defined', () => {

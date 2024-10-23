@@ -12,7 +12,10 @@ export class AuthService {
     private jwtService: JwtService, // private configService: AppConfigService,
   ) {}
 
-  async validateUser(email: string, hash: string): Promise<any> {
+  async validateUser(
+    email: string,
+    hash: string,
+  ): Promise<Partial<User> | null> {
     const user = await this.usersService.findOne(email);
     // console.log(user);
 

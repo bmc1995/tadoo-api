@@ -1,10 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { DocumentService } from '../modules/document/document.service';
+import { TodoService } from '../modules/todos/todo.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { DocumentEntity } from '../database/repositories/document/document.entity';
+import { Todo } from '../database/repositories/todo/todo.entity';
 
-describe('DocumentService', () => {
-  let service: DocumentService;
+describe('TodoService', () => {
+  let service: TodoService;
 
   const repositoryMockFactory = () => {
     return { msg: 'mockFunc' };
@@ -13,15 +13,15 @@ describe('DocumentService', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        DocumentService,
+        TodoService,
         {
-          provide: getRepositoryToken(DocumentEntity),
+          provide: getRepositoryToken(Todo),
           useFactory: repositoryMockFactory,
         },
       ],
     }).compile();
 
-    service = module.get<DocumentService>(DocumentService);
+    service = module.get<TodoService>(TodoService);
   });
 
   it('should be defined', () => {
